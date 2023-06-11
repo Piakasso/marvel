@@ -1,11 +1,12 @@
 import "./comicsList.scss";
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 import useMarvelService from "../../services/MarvelService";
 
-const ComicsList = (props) => {
+const ComicsList = () => {
   const [comicsList, setComicsList] = useState([]);
   const [newItemLoading, setNewItemLoading] = useState(false);
   const [offset, setOffset] = useState(10);
@@ -27,16 +28,15 @@ const ComicsList = (props) => {
     if (newComicsList.length < 8) {
       ended = true;
     }
-    setComicsList((comicsList) => [...comicsList, ...newComicsList]);
-    setNewItemLoading((newItemLoading) => false);
+    setComicsList([...comicsList, ...newComicsList]);
+    setNewItemLoading(false);
     setOffset(offset + 8);
-    setComicsEnded((comicsEnded) => ended);
+    setComicsEnded(ended);
   };
 
   function renderItems(arr) {
     const items = arr.map((item, i) => {
       let imgSize = { objectFit: "cover" };
-      //   if(item.thumbnail === )
       return (
         <li className="comics__item" tabIndex={0} key={i}>
           <Link to={`/comics/${item.id}`}>

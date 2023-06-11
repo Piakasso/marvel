@@ -8,7 +8,7 @@ import "./charList.scss";
 const CharList = (props) => {
   const [charList, setCharList] = useState([]);
   const [newItemLoading, setNewItemLoading] = useState(false);
-  const [offset, setOffset] = useState(240);
+  const [offset, setOffset] = useState(260);
   const [charEnded, setCharEnded] = useState(false);
 
   const { loading, error, getAllCharacters } = useMarvelService();
@@ -29,7 +29,7 @@ const CharList = (props) => {
       ended = true;
     }
 
-    setCharList((charList) => [...charList, ...newCharList]);
+    setCharList([...charList, ...newCharList]);
     setNewItemLoading((newItemLoading) => false);
     setOffset((offset) => offset + 9);
     setCharEnded((charEnded) => ended);
@@ -56,7 +56,6 @@ const CharList = (props) => {
       ) {
         imgSize = { objectFit: "unset" };
       }
-
       return (
         <li
           className="char__item"
