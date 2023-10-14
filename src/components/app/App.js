@@ -10,7 +10,7 @@ const SingleComicPage = lazy(() => import("../pages/SingleComicPage"));
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="marvel">
       <div className="app">
         <AppHeader />
         <main>
